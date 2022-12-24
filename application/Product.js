@@ -1,13 +1,23 @@
 const User = require("./User");
 
 class Product {
-  constructor(id, idUser, name, category, expireDate, claimedUser, available) {
+  constructor(
+    id,
+    idOwner,
+    name,
+    category,
+    price,
+    expireDate,
+    claimedUserId,
+    available
+  ) {
     this.id = id;
-    this.idUser = idUser;
+    this.idOwner = idOwner;
     this.name = name;
     this.category = category;
+    this.price = price;
     this.expireDate = expireDate;
-    this.claimedUser = claimedUser;
+    this.claimedUserId = claimedUserId;
     this.available = available;
   }
 }
