@@ -35,7 +35,7 @@ productRouter
         !req.body.hasOwnProperty("price") ||
         !req.body.hasOwnProperty("expireDate") ||
         !req.body.hasOwnProperty("claimedUserId"),
-      !req.body.hasOwnProperty("c"))
+      !req.body.hasOwnProperty("available"))
     ) {
       res.status(400).json({ message: "Wrong request" });
     } else {
@@ -58,7 +58,11 @@ productRouter
     }
   })
   .put("/changeAvailability/:productId", checkProductId, (req, res) => {
-    defaultProducts.find((x) => x.id == req.params.productId).available = true;
+    defaultProducts.find((x) => x.id == req.params.productId).available =
+      defaultProducts.find((x) => x.id == req.params.productId).available
+        ? false
+        : true;
+
     res
       .status(200)
       .json(defaultProducts.find((x) => x.id == req.params.productId));
