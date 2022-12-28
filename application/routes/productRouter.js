@@ -4,7 +4,7 @@ const Product = require("../Product");
 
 const productRouter = express.Router();
 
-const checkId = (req, res, next) => {
+const checkProductId = (req, res, next) => {
   if (
     defaultProducts.filter((x) => x.id == req.params.productId).length === 0
   ) {
@@ -22,7 +22,8 @@ productRouter
     }
     res.status(200).json(categoryProducts);
   })
-  .get("/product/:productId", checkId, (req, res) => {
+  .get("/product/:productId", checkProductId, (req, res) => {
+
     res
       .status(200)
       .json(defaultProducts.filter((x) => x.id == req.params.productId));
@@ -35,7 +36,8 @@ productRouter
         !req.body.hasOwnProperty("price") ||
         !req.body.hasOwnProperty("expireDate") ||
         !req.body.hasOwnProperty("claimedUserId"),
-      !req.body.hasOwnProperty("c"))
+        !req.body.hasOwnProperty("available"))
+
     ) {
       res.status(400).json({ message: "Wrong request" });
     } else {
@@ -57,11 +59,30 @@ productRouter
       res.status(200).json({ added: "ok", id: idMax + 1 });
     }
   })
-  .put("/changeAvailability/:productId", checkId, (req, res) => {
-    defaultProducts.find((x) => x.id == req.params.productId).available = true;
+  .put("/changeAvailability/:productId", checkProductId, (req, res) => {
+    defaultProducts.find((x) => x.id == req.params.productId).available =
+      defaultProducts.find((x) => x.id == req.params.productId).available
+        ? false
+        : true;
+
     res
       .status(200)
       .json(defaultProducts.find((x) => x.id == req.params.productId));
+  })
+  .put("/addClaimedUser/:productId", checkProductId, (req, res) => {
+    if (!req.body.hasOwnProperty("claimedUserId")) {
+      res.status(400).json({ message: "bad request" });
+    } else {
+      if (users.find((x) => x.id == req.body.claimedUserId) == null) {
+        res.status(404).json({ message: "User not found" });
+      } else {
+        defaultProducts.find(
+          (x) => x.id == req.params.productId
+        ).claimedUserId = req.body.claimedUserId;
+        res.status(200).json(users.find((x) => x.id == req.body.claimedUserId));
+      }
+    }
+
   });
 
 module.exports = productRouter;
