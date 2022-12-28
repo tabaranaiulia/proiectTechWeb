@@ -23,6 +23,7 @@ productRouter
     res.status(200).json(categoryProducts);
   })
   .get("/product/:productId", checkProductId, (req, res) => {
+
     res
       .status(200)
       .json(defaultProducts.filter((x) => x.id == req.params.productId));
@@ -35,7 +36,8 @@ productRouter
         !req.body.hasOwnProperty("price") ||
         !req.body.hasOwnProperty("expireDate") ||
         !req.body.hasOwnProperty("claimedUserId"),
-      !req.body.hasOwnProperty("available"))
+        !req.body.hasOwnProperty("available"))
+
     ) {
       res.status(400).json({ message: "Wrong request" });
     } else {
@@ -80,6 +82,7 @@ productRouter
         res.status(200).json(users.find((x) => x.id == req.body.claimedUserId));
       }
     }
+
   });
 
 module.exports = productRouter;
