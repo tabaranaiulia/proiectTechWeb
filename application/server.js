@@ -1,6 +1,14 @@
 const app = require("./app");
+const sequelize = require("./sequelize");
 const port = 8080;
 
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log("App running on port: " + port);
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync();
+    console.log("Connection established succesfully");
+  } catch (err) {
+    console.error("Unable to connect " + err);
+  }
 });

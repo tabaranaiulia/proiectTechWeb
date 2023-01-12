@@ -1,5 +1,5 @@
-const Product = require("./Product");
-const User = require("./User");
+const Product = require("./models/Product");
+const User = require("./models/User");
 
 let defaultProducts = [
   new Product(1, 1, "rosie", "leguma", "10.12.2022", null, false),
