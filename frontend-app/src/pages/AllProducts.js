@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductList from "../components/products/ProductList";
 
-const DUMMY_DATA = [];
-
 function AllProductsPage() {
   const [loading, setLoading] = useState(true);
   const [allProducts, setAllProducts] = useState([]);
@@ -12,7 +10,6 @@ function AllProductsPage() {
       method: "GET",
     })
       .then((res) => {
-        console.log(res.json);
         return res.json();
       })
       .then((data) => {

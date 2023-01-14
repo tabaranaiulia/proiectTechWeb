@@ -9,15 +9,7 @@ const User = sequelize.define("user", {
   },
   username: DataTypes.STRING,
   category: DataTypes.STRING,
+  image: DataTypes.STRING,
 });
-
-// class User {
-//   constructor(id, username, category, listProducts) {
-//     this.id = id;
-//     this.username = username;
-//     this.category = category;
-//     this.listProducts = listProducts;
-//   }
-// }
 
 module.exports = User;

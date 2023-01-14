@@ -11,6 +11,11 @@ function ProductList(props) {
           name={product.name}
           category={product.category}
           image={product.image}
+          expireDate={product.expireDate}
+          available={product.available}
+          price={product.price}
+          quantity={product.quantity}
+          quantityType={product.quantityType}
         />
       ))}
     </ul>

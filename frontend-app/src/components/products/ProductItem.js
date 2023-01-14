@@ -14,7 +14,17 @@ function ProductItem(props) {
         </div>
         <div>
           <h3>{props.name}</h3>
-          <p>{props.category}</p>
+          <p className={classes.para}>{props.category}</p>
+          <p className={classes.para}>Valid through: {props.expireDate}</p>
+          <p className={classes.para}>
+            Product {props.available ? "available to Claim" : "Not Available"}
+          </p>
+          <p className={classes.para}>
+            Quantity: {props.quantity} {props.quantityType}(s)
+          </p>
+          <p className={classes.para}>
+            {props.price}$ / {props.quantityType}
+          </p>
         </div>
         <div className={classes.actions}>
           <button>Claim Item</button>

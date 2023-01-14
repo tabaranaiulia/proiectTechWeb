@@ -16,6 +16,12 @@ function MainNavigation() {
           <li>
             <Link to="/NewProductsPage">New Product</Link>
           </li>
+          <li>
+            <Link to="/MyProducts">My Products</Link>
+          </li>
+          <li>
+            <Link to="/NewProductsPage">Claimed Items</Link>
+          </li>
         </ul>
       </nav>
     </header>

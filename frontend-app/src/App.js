@@ -17,6 +17,9 @@ function App() {
         <Route path="/NewProductsPage">
           <NewProductsPage />
         </Route>
+        <Route path="/MyProducts">
+          <div>caac</div>
+        </Route>
       </Switch>
     </Layout>
   );
