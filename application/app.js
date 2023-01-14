@@ -1,6 +1,7 @@
 const { urlencoded } = require("express");
 const express = require("express");
 const sequelize = require("./sequelize");
+const cors = require("cors");
 
 const productRouter = require("./routes/ProductRouter");
 const userRouter = require("./routes/userRouter");
@@ -12,6 +13,7 @@ const loginRouter = require("./routes/loginRouter");
 const app = express();
 app.use(urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 //sync database
 app.get("/create", async (req, res, next) => {

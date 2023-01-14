@@ -1,5 +1,6 @@
 const app = require("./app");
 const sequelize = require("./sequelize");
+const cors = require("cors");
 const port = 8080;
 
 app.listen(port, async () => {
