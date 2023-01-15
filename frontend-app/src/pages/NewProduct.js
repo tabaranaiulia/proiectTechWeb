@@ -1,18 +1,21 @@
 import NewProductForm from "../components/products/NewProductForm";
 import { useHistory } from "react-router-dom";
+import UserContext from "../store/user-context";
+import { useContext } from "react";
 
 function NewProductsPage() {
   const history = useHistory();
+  const userCtx = useContext(UserContext);
 
   function addProductHandler(productData) {
-    fetch("http://localhost:8080/products/1/addProduct", {
+    fetch(`http://localhost:8080/products/${userCtx.userId}/addProduct`, {
       method: "POST",
       body: JSON.stringify(productData),
       headers: {
         "Content-Type": "application/json",
       },
     }).then(() => {
-      // history.replace("/")
+      history.replace("/MyProducts");
     });
   }
 

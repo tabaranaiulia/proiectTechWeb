@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 import classes from "./MainNavigation.module.css";
+import UserContext from "../../store/user-context";
 
 function MainNavigation() {
+  const userCtx = useContext(UserContext);
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>Alex</div>
+      <div className={classes.logo}>
+        <img src={userCtx.currentUser.image}></img>
+        <p>{userCtx.currentUser.username}</p>
+        <p>{userCtx.currentUser.category}</p>
+      </div>
       <nav>
         <ul>
           <li>
@@ -20,7 +27,7 @@ function MainNavigation() {
             <Link to="/MyProducts">My Products</Link>
           </li>
           <li>
-            <Link to="/NewProductsPage">Claimed Items</Link>
+            <Link to="/MyClaimedProducts">Claimed Items</Link>
           </li>
         </ul>
       </nav>

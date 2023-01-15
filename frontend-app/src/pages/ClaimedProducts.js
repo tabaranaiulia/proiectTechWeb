@@ -1,14 +1,14 @@
-import { useEffect, useState, useContext } from "react";
-import ProductList from "../components/products/ProductList";
+import { useState, useContext, useEffect } from "react";
 import UserContext from "../store/user-context";
+import ProductList from "../components/products/ProductList";
 
-function AllProductsPage() {
+function ClaimedProducts() {
   const [loading, setLoading] = useState(true);
   const [allProducts, setAllProducts] = useState([]);
   const userCtx = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/products/${userCtx.userId}/filteredProducts`, {
+    fetch(`http://localhost:8080/products/${userCtx.userId}/claimedProducts`, {
       method: "GET",
     })
       .then((res) => {
@@ -16,7 +16,6 @@ function AllProductsPage() {
       })
       .then((data) => {
         setLoading(false);
-        console.log(data);
         setAllProducts(data);
       });
   }, []);
@@ -28,13 +27,12 @@ function AllProductsPage() {
       </section>
     );
   }
-
   return (
     <section>
-      <h1>All Products</h1>
+      <h1>My Claimed Products</h1>
       <ProductList products={allProducts} />
     </section>
   );
 }
 
-export default AllProductsPage;
+export default ClaimedProducts;

@@ -1,6 +1,7 @@
 const express = require("express");
 const Product = require("../models/Product");
 const User = require("../models/User");
+const { Op } = require("sequelize");
 
 const productRouter = express.Router();
 
@@ -25,6 +26,51 @@ productRouter
       next(error);
     }
   })
+  .get("/:UserId/filteredProducts", async (req, res, next) => {
+    try {
+      const products = await Product.findAll();
+      const filteredProducts = products.filter(
+        (x) => x.UserId != req.params.UserId
+      );
+      if (filteredProducts) {
+        res.status(200).json(filteredProducts);
+      } else {
+        res.status(400).json({ message: "No matching products" });
+      }
+    } catch (error) {
+      next(error);
+    }
+  })
+  .get("/:UserId/claimedProducts", async (req, res, next) => {
+    try {
+      const products = await Product.findAll({
+        where: { claimedUserId: { [Op.eq]: req.params.UserId } },
+      });
+
+      if (products) {
+        res.status(200).json(products);
+      } else {
+        res.status(400).json({ message: "No matching products" });
+      }
+    } catch (error) {
+      next(error);
+    }
+  })
+  .get("/:UserId/userProducts", async (req, res, next) => {
+    try {
+      const products = await Product.findAll();
+      const filteredProducts = products.filter(
+        (x) => x.UserId == req.params.UserId
+      );
+      if (filteredProducts) {
+        res.status(200).json(filteredProducts);
+      } else {
+        res.status(400).json({ message: "No matching products" });
+      }
+    } catch (error) {
+      next(error);
+    }
+  })
   .post("/:UserId/addProduct", async (req, res, next) => {
     try {
       const user = await User.findByPk(req.params.UserId);
@@ -40,7 +86,7 @@ productRouter
       next(error);
     }
   })
-  .put("/changeAvailability/:productId", async (req, res, next) => {
+  .put("/:productId", async (req, res, next) => {
     try {
       const product = await Product.findByPk(req.params.productId);
       if (product) {
@@ -53,15 +99,14 @@ productRouter
       next(error);
     }
   })
-  .put("/:productId", async (req, res, next) => {
+  .delete("/delete/:productId", async (req, res, next) => {
     try {
-      const product = await Product.findByPk(req.params.productId);
-      if (product) {
-        const updatedProduct = await product.update(req.body);
-        res.status(200).json(updatedProduct);
-      } else {
-        res.status(404).json({ message: "product not found" });
-      }
+      Product.destroy({
+        where: { id: { [Op.eq]: req.params.productId } },
+      });
+      res
+        .status(200)
+        .json({ message: `Product ${req.params.productId}  deleted` });
     } catch (error) {
       next(error);
     }

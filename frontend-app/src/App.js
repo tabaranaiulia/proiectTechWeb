@@ -3,6 +3,8 @@ import AllProductsPage from "./pages/AllProducts";
 import NewProductsPage from "./pages/NewProduct";
 import AllUsersPage from "./pages/AllUsers";
 import Layout from "./components/layout/Layout";
+import MyProducts from "./pages/MyProducts";
+import ClaimedProducts from "./pages/ClaimedProducts";
 
 function App() {
   return (
@@ -18,7 +20,10 @@ function App() {
           <NewProductsPage />
         </Route>
         <Route path="/MyProducts">
-          <div>caac</div>
+          <MyProducts />
+        </Route>
+        <Route path="/MyClaimedProducts">
+          <ClaimedProducts />
         </Route>
       </Switch>
     </Layout>

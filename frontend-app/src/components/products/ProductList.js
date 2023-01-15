@@ -16,6 +16,8 @@ function ProductList(props) {
           price={product.price}
           quantity={product.quantity}
           quantityType={product.quantityType}
+          userId={product.UserId}
+          claimedUserId={product.claimedUserId}
         />
       ))}
     </ul>

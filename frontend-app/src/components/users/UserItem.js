@@ -1,7 +1,25 @@
+import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import Card from "../userInterface/Card";
 import classes from "./UserItem.module.css";
+import UserContext from "../../store/user-context";
 
 function UserItem(props) {
+  const history = useHistory();
+  const userCtx = useContext(UserContext);
+
+  const userIsSelected = userCtx.isCurrentUser(props.id);
+
+  function selectUser() {
+    userCtx.selectCurrentUser({
+      id: props.id,
+      username: props.username,
+      category: props.category,
+      image: props.image,
+    });
+    history.push("/AllProductsPage");
+  }
+
   return (
     <li className={classes.item}>
       <Card>
@@ -17,7 +35,9 @@ function UserItem(props) {
           <p>{props.category}</p>
         </div>
         <div className={classes.actions}>
-          <button>Select User</button>
+          <button onClick={selectUser}>
+            {userIsSelected ? "User Selected" : "Select User"}
+          </button>
         </div>
       </Card>
     </li>

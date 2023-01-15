@@ -1,8 +1,11 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import Card from "../userInterface/Card";
 import classes from "./NewProductForm.module.css";
+import UserContext from "../../store/user-context";
 
 function NewProductForm(props) {
+  const userCtx = useContext(UserContext);
+
   const nameInputRef = useRef();
   const categoryInputRef = useRef();
   const priceInputRef = useRef();
@@ -34,6 +37,7 @@ function NewProductForm(props) {
       quantity: enteredQuantity,
       expireDate: enteredExpireDate,
       image: enteredImage,
+      available: "false",
     };
     console.log(enteredImage);
     props.onAddProduct(productData);
@@ -42,6 +46,9 @@ function NewProductForm(props) {
   return (
     <Card>
       <form className={classes.form} onSubmit={submitHandler}>
+        <div className={classes.control}>
+          <p>Add Product for {userCtx.currentUser.username}</p>
+        </div>
         <div className={classes.control}>
           <label htmlFor="name">Product Name</label>
           <input type="text" required id="name" ref={nameInputRef}></input>

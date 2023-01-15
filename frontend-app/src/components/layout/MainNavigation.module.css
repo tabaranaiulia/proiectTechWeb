@@ -8,8 +8,13 @@
   padding: 0 10%;
 }
 
-.logo {
-  font-size: 2rem;
+.logo img {
+  width: 10%;
+  object-fit: fill;
+}
+
+.logo p {
+  font-size: 1rem;
   color: white;
   font-weight: bold;
 }
