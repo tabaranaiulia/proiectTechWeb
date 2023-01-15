@@ -1,5 +1,6 @@
 import UserList from "../components/users/UserList";
 import { useEffect, useState } from "react";
+import classes from "./Pages.module.css";
 
 function AllUsersPage() {
   const [loading, setLoading] = useState(true);
@@ -29,7 +30,7 @@ function AllUsersPage() {
 
   return (
     <section>
-      <h1>All Users</h1>
+      <h1 className={classes.headers}>All Users</h1>
       <UserList users={allUsers} />
     </section>
   );

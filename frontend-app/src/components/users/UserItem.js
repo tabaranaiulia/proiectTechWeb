@@ -31,8 +31,8 @@ function UserItem(props) {
           ></img>
         </div>
         <div>
-          <h3>{props.username}</h3>
-          <p>{props.category}</p>
+          <h3 className={classes.info}>{props.username}</h3>
+          <p className={classes.info}>{props.category}</p>
         </div>
         <div className={classes.actions}>
           <button onClick={selectUser}>

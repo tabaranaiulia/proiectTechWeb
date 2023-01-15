@@ -10,6 +10,10 @@
   border-top-left-radius: 6px;
 }
 
+.info {
+  text-align: center;
+}
+
 .image img {
   width: 100%;
   object-fit: cover;
@@ -33,14 +37,15 @@
 .actions button {
   font: inherit;
   cursor: pointer;
-  color: #77002e;
-  border: 1px solid #77002e;
-  background-color: transparent;
+  background-color: #4e6c50;
+  color: #dddddd;
+  border: 1px solid #820000;
   padding: 0.5rem 1.5rem;
   border-radius: 4px;
 }
 
 .actions button:hover,
 .actions button:active {
-  background-color: #ffe2ed;
+  color: #820000;
+  background-color: #dddddd;
 }

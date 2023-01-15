@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #77002e;
+  background-color: #820000;
   padding: 0 10%;
 }
 
@@ -13,8 +13,7 @@
   object-fit: fill;
 }
 
-.logo p {
-  font-size: 1rem;
+.logo h2 {
   color: white;
   font-weight: bold;
 }
@@ -34,7 +33,7 @@
 .header a {
   text-decoration: none;
   font-size: 1.5rem;
-  color: #fcb8d2;
+  color: #eeeeee;
 }
 
 .header a:hover,

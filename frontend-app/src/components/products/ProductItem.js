@@ -90,9 +90,8 @@ function ProductItem(props) {
           ></img>
         </div>
         <div>
-          <h3>{props.name}</h3>
-          <p>{props.userId}</p>
-          <p className={classes.para}>{props.claimedUserId}</p>
+          <h3 className={classes.content}>{props.name}</h3>
+
           <p className={classes.para}>Valid through: {props.expireDate}</p>
           <p className={classes.para}>
             Product{" "}

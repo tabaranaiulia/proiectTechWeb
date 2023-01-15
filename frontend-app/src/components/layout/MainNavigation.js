@@ -8,9 +8,7 @@ function MainNavigation() {
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
-        <img src={userCtx.currentUser.image}></img>
-        <p>{userCtx.currentUser.username}</p>
-        <p>{userCtx.currentUser.category}</p>
+        <h2>{userCtx.currentUser.username}</h2>
       </div>
       <nav>
         <ul>

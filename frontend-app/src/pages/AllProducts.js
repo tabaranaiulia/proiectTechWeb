@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import ProductList from "../components/products/ProductList";
 import UserContext from "../store/user-context";
+import classes from "./Pages.module.css";
 
 function AllProductsPage() {
   const [loading, setLoading] = useState(true);
@@ -31,7 +32,7 @@ function AllProductsPage() {
 
   return (
     <section>
-      <h1>All Products</h1>
+      <h1 className={classes.headers}>All Products</h1>
       <ProductList products={allProducts} />
     </section>
   );
